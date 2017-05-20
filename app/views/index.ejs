@@ -7,6 +7,11 @@
 				<i class="fa fa-twitter"><a href="/postadd"></i>ADD POST</i></a>
 			</div></center>
 		</div>
+		<ul class="list-group">
+		<% posts.forEach(function(post){%>
+			<li class="list-group-item"><%= post.val %><br>
+		<%}) %>
+		</ul>
 		<script type="text/javascript" src="common/ajax-functions.js"></script>
 		<script type="text/javascript" src="controllers/clickController.client.js"></script>
 		<script type="text/javascript" src="controllers/userController.client.js"></script>
