@@ -1,6 +1,7 @@
 'use strict';
 
 var GitHubStrategy = require('passport-github').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
 var User = require('../models/users');
 var configAuth = require('./auth');
 
@@ -14,7 +15,7 @@ module.exports = function (passport) {
 			done(err, user);
 		});
 	});
-
+	//passport.use(new LocalStr)
 	passport.use(new GitHubStrategy({
 		clientID: configAuth.githubAuth.clientID,
 		clientSecret: configAuth.githubAuth.clientSecret,
@@ -49,4 +50,27 @@ module.exports = function (passport) {
 			});
 		});
 	}));
+	passport.use(new LocalStrategy(function(username,password,done)
+	{
+    	user.findOne({user:username},function(err,user)
+    	{
+      	  if(err)
+          {
+             return done(err);
+          }
+          if(!user)
+          {
+             return done(null,false,{message:'Incorrect username'});
+          }
+          var check=user.validatePassword(password);
+          if(check===true)
+          {
+            return done(user);
+          }
+          else
+          {
+            return done(null,false,{message:'Incorrect Password'});
+          }
+        });
+    }));
 };

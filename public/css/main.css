@@ -202,3 +202,8 @@ span {
 	display: inline;
 	margin: 0;
 }
+#addpost{
+	width:400px;
+	text-align:center;
+	margin-left: 450px;
+}
