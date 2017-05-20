@@ -25,14 +25,18 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "chart": "^0.1.2",
     "crypto": "0.0.3",
     "dotenv": "^1.2.0",
+    "ejs": "^2.5.6",
+    "ejs-locals": "^1.0.2",
     "express": "^4.15.3",
     "express-session": "^1.11.3",
     "mongoose": "^4.10.0",
     "nodemon": "^1.11.0",
     "passport": "^0.3.0",
     "passport-github": "^1.0.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7"
   }
 }

@@ -3,6 +3,8 @@
 var crypto = require('crypto');
 var Post = require('../models/options');
 var path = process.cwd();
+var mongoose = require('mongoose');
+require('dotenv').load();
 var ClickHandler = require(path + '/app/controllers/clickHandler.server.js');
 
 module.exports = function (app, passport) {
@@ -46,7 +48,6 @@ module.exports = function (app, passport) {
 				val:req.body.question,
 				users:req.user._id,
 				option:[],
-				link:"test"
 			});
 			//this is to save post
 			post.save(function(err){
@@ -69,9 +70,17 @@ module.exports = function (app, passport) {
 			res.redirect('/');
 		});
 	app.route('/link/:id')
-		.get(function(req,res)
+		.get(function(req,res,next)
 		{
-			console.log(req.params.id);
+			Post.find({_id:req.params.id},function(err,post)
+			{
+				if(err)
+				{
+					console.log(err);
+					return next;
+				}
+				res.render('post',{Post:post});
+			});
 		});
 	app.route('/api/:id')
 		.get(isLoggedIn, function (req, res) {

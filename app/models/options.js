@@ -19,10 +19,6 @@ var post=new Schema({
 			required:true
 		}
 	}],
-	link:{
-		type:String,
-		required:true
-	}
 });
 
 module.exports = mongoose.model('Post', post);

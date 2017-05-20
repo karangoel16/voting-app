@@ -6,7 +6,9 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var session = require('express-session');
 var bodyParser = require('body-parser');
+var path = require('path');
 var crypto = require('crypto');
+var engine = require('ejs-locals');
 var app = express();
 require('dotenv').load();
 require('./app/config/passport')(passport);
@@ -29,6 +31,10 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.set('views', path.join(__dirname, '/app/views'));
+app.engine('ejs', engine);
+app.set('view engine', 'ejs');
 
 routes(app, passport);
 
