@@ -39,7 +39,40 @@ module.exports = function (app, passport) {
 			req.logout();
 			res.redirect('/login');
 		});
-
+	app.route('/update_post')
+		.post(function(req,res,next){
+			//console.log(req.body);
+			var query={
+				'_id':req.body.postId,
+				'option._id':req.body.optionId
+			}
+			Post.update(query,{$inc:{'option.$.click':1}},function(err,post)
+				{
+					if(err)
+					{
+						console.log(err);
+						return err;
+					}
+					//console.log(JSON.stringify(post));
+					res.json({success : "Updated Successfully", status : 200});
+				});
+		});
+	app.route('/deletepost')
+		.post(function(req,res,next){
+			var query={
+				'_id':req.body.postId
+			}
+			Post.remove({query},function(err)
+			{
+				if(err)
+				{
+					console.log(err);
+					return;
+				}
+				console.log("*");
+				res.json({success : "Updated Successfully", status : 200});
+			});
+		});
 	app.route('/profile')
 		.get(isLoggedIn, function (req, res) {
 			res.sendFile(path + '/public/profile.html');
@@ -51,7 +84,7 @@ module.exports = function (app, passport) {
 		})
 		.post(isLoggedIn,function(req,res,next)
 		{
-			console.log(req.body);
+			//console.log(req.body);
 			var post=new Post({
 				val:req.body.question,
 				users:req.user._id,

@@ -4,11 +4,22 @@
 	function test(postid,optionid){
 		console.log(postid);
 		console.log(optionid);
-		/*$.ajax({
-			url:
-			success:function()
-
-		});*/
+		$.ajax({
+			type:"POST",
+			url:"/update_post",
+			data:{
+				postId:postid,
+				optionId:optionid
+			},
+			success:function(res)
+				{
+					console.log("test success");
+				},
+			error:function(err)
+			{
+				console.log(err);
+			}
+		});
 	}
 	</script>
 	<h1></h1><br>
@@ -20,6 +31,7 @@
 		<div class="btn btn-primary" onclick="test('<%=Post[0]._id%>','<%=post._id%>')">
 		<%=post.name%><br>
 		</div>
+		
 	<%})%>
 	</ul>
 	</div>
