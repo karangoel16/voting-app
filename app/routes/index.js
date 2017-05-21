@@ -58,7 +58,7 @@ module.exports = function (app, passport) {
 				});
 		});
 	app.route('/deletepost')
-		.post(function(req,res,next){
+		.post(isLoggedIn,function(req,res,next){
 			console.log(req.body);
 			var query={
 				'_id':req.body.postId
