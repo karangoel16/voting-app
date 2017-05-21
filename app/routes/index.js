@@ -59,18 +59,25 @@ module.exports = function (app, passport) {
 		});
 	app.route('/deletepost')
 		.post(function(req,res,next){
+			console.log(req.body);
 			var query={
 				'_id':req.body.postId
 			}
-			Post.remove({query},function(err)
-			{
+			Post.findById(req.body.postId,function(err,post){
 				if(err)
 				{
 					console.log(err);
 					return;
 				}
-				console.log("*");
-				res.json({success : "Updated Successfully", status : 200});
+				post.remove(function(err)
+				{
+					if(err)
+					{
+						console.log(err);
+						return;
+					}
+					res.json({success : "Updated Successfully", status : 200});
+				});
 			});
 		});
 	app.route('/profile')
