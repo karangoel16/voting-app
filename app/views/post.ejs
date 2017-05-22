@@ -1,4 +1,6 @@
  <% include layout %>
+  	<link href="/public/css/modal.css" rel="stylesheet" type="text/css">
+ 	<script src="/public/js/modal.js"></script>
 	<body>
 	<script>
 	function test(postid,optionid){
@@ -24,6 +26,12 @@
 	}
 	</script>
 	<h1></h1><br>
+	<div id="myModal" class="modal">
+		<div class="modal-content">
+			<span id="close">&times;</span>
+				<p>You have been doomed</p>
+			</div>
+		</div>
 	<div class="jumbotron">
 	<p><%= Post[0].val %></p>
 	<ul class="list-group">
@@ -32,8 +40,8 @@
 		<div class="btn btn-primary" onclick="test('<%=Post[0]._id%>','<%=post._id%>')">
 		<%=post.name%>
 		</div><%=post.click%><br>
-		
 	<%})%>
 	</ul>
+	<button class="btn btn-primary" id="test" onclick="func()">View Result</button>
 	</div>
 	</body>
