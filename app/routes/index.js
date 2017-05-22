@@ -4,7 +4,7 @@ var crypto = require('crypto');
 var Post = require('../models/options');
 var path = process.cwd();
 var mongoose = require('mongoose');
-require('dotenv').load();
+//require('dotenv').load();
 var ClickHandler = require(path + '/app/controllers/clickHandler.server.js');
 
 module.exports = function (app, passport) {
