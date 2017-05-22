@@ -54,6 +54,7 @@ module.exports = function (app, passport) {
 						return err;
 					}
 					//console.log(JSON.stringify(post));
+					console.log("*");
 					res.json({success : "Updated Successfully", status : 200});
 				});
 		});

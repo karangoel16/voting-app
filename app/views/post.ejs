@@ -14,6 +14,7 @@
 			success:function(res)
 				{
 					console.log("test success");
+					$(document).ajaxStop(function() { location.reload(true); });
 				},
 			error:function(err)
 			{
@@ -29,8 +30,8 @@
 	<%Post[0].option.forEach(function(post){%>
 		<li class="list-group-item">
 		<div class="btn btn-primary" onclick="test('<%=Post[0]._id%>','<%=post._id%>')">
-		<%=post.name%><br>
-		</div>
+		<%=post.name%>
+		</div><%=post.click%><br>
 		
 	<%})%>
 	</ul>
