@@ -18,6 +18,7 @@
   			return false;
   		}
   		counter++;
+  		$('<br>').appendTo('#mainform');
 		$('<input/>').attr({type:'text',name:'text',id:'text'+counter}).appendTo('#mainform');
 		$('#counter').val(counter);
   	});
