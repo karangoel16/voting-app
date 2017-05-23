@@ -25,11 +25,12 @@ module.exports = function (passport) {
 		process.nextTick(function () {
 			User.findOne({ 'github.id': profile.id }, function (err, user) {
 				if (err) {
+					console.log(configAuth.githubAuth.clientID);
 					return done(err);
 				}
 
 				if (user) {
-					console.log(clientID);
+					//console.log(clientID);
 					return done(null, user);
 				} else {
 					var newUser = new User();
