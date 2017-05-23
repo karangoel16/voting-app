@@ -19,7 +19,7 @@
   		}
   		counter++;
   		$('<br>').appendTo('#mainform');
-		$('<input/>').attr({type:'text',name:'text',id:'text'+counter}).appendTo('#mainform');
+		$('<input/>').attr({type:'text',name:'text',id:'text'+counter,class:'form-control'}).appendTo('#mainform');
 		$('#counter').val(counter);
   	});
   });
@@ -34,7 +34,7 @@
 	<body>
 		<div class="jumbotron" id="addpost">
 			<form action="/postadd" method="post" id="mainform">
-				<textarea row="10px" col="10px" name="question"></textarea> <br />
+				<textarea row="10px" col="10px" name="question" class="form-control"></textarea> <br />
 				<input type="hidden" name="counter" value="0" id="counter">
 				<input type="submit" text="submit" id="submit">
 			</form>
