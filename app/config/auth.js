@@ -2,8 +2,8 @@
 
 module.exports = {
 	'githubAuth': {
-		'clientID': process.GITHUB_KEY,
-		'clientSecret': process.GITHUB_SECRET,
-		'callbackURL': process.APP_URL + 'auth/github/callback'
+		'clientID': process.env.GITHUB_KEY,
+		'clientSecret': process.env.GITHUB_SECRET,
+		'callbackURL': process.env.APP_URL + 'auth/github/callback'
 	}
 };

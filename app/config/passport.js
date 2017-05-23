@@ -29,6 +29,7 @@ module.exports = function (passport) {
 				}
 
 				if (user) {
+					console.log(clientID);
 					return done(null, user);
 				} else {
 					var newUser = new User();
@@ -38,7 +39,6 @@ module.exports = function (passport) {
 					newUser.github.displayName = profile.displayName;
 					newUser.github.publicRepos = profile._json.public_repos;
 					newUser.nbrClicks.clicks = 0;
-
 					newUser.save(function (err) {
 						if (err) {
 							throw err;
