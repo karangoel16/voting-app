@@ -54,7 +54,6 @@ module.exports = function (app, passport) {
 						return err;
 					}
 					//console.log(JSON.stringify(post));
-					console.log("*");
 					res.json({success : "Updated Successfully", status : 200});
 				});
 		});
@@ -131,6 +130,37 @@ module.exports = function (app, passport) {
 				res.render('post',{Post:post});
 			});
 		});
+	app.route('/postval/:id')
+		.post(function(req,res,next){
+			console.log(req.params.id);
+			Post.findById({_id:req.params.id},function(err,post){
+				if(err)
+				{
+					return err;
+				}
+				console.log(post);
+				res.send(post);
+				//res.json({success:"Post sucess",body:post,status:200});
+			});
+		});
+	app.route('/postedit/:id')
+		.get(isLoggedIn,function(req,res,next)
+		{
+			Post.findById({_id:req.params.id},function(err,post)
+			{
+				if(err)
+				{
+					console.log(err);
+					return next;
+				}
+				//console.log(post);
+				res.render('edit',{post:post});
+			});
+		})
+		.post(isLoggedIn,function(req,res,next)
+			{
+				console.log(req.body);
+			});
 	app.route('/api/:id')
 		.get(isLoggedIn, function (req, res) {
 			res.json(req.user.github);

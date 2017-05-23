@@ -1,0 +1,16 @@
+<% include layout%>
+<script>
+</script>
+<body>
+	<div class="jumbotron">
+		<form method="POST" action="/postedit/<%=post._id%>">
+			<textarea class="form-control" placeholder='<%=post.val%>' name="question"><%=post.val%></textarea><br>
+			<%var i=0;%>
+			<%post.option.forEach(function(option){%>
+				<input class="form-control" value='<%=option.name%>' name="text" id="text<%i%>"><br>
+			<%})%>
+			<input type="submit" text="submit" id="submit">
+			<%i=i+1%>
+		</form>
+	</div>
+</body>

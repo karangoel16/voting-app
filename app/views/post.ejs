@@ -1,6 +1,10 @@
  <% include layout %>
   	<link href="/public/css/modal.css" rel="stylesheet" type="text/css">
  	<script src="/public/js/modal.js"></script>
+ 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   <script type="text/javascript">
+     google.charts.load('current', {packages: ['corechart']});     
+   </script>
 	<body>
 	<script>
 	function test(postid,optionid){
@@ -16,20 +20,20 @@
 			success:function(res)
 				{
 					console.log("test success");
-					$(document).ajaxStop(function() { location.reload(true); });
 				},
 			error:function(err)
 			{
 				console.log(err);
 			}
-		});
+		}).done(func(postid));
 	}
 	</script>
 	<h1></h1><br>
 	<div id="myModal" class="modal">
 		<div class="modal-content">
 			<span id="close">&times;</span>
-				<p>You have been doomed</p>
+				<div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
+</body>
 			</div>
 		</div>
 	<div class="jumbotron">
@@ -42,6 +46,6 @@
 		</div><%=post.click%><br>
 	<%})%>
 	</ul>
-	<button class="btn btn-primary" id="test" onclick="func()">View Result</button>
+	<button class="btn btn-primary" id="test" onclick="func('<%=Post[0]._id%>')">View Result</button>
 	</div>
 	</body>

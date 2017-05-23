@@ -1,6 +1,10 @@
  <% include layout %>
  	<link href="/public/css/modal.css" rel="stylesheet" type="text/css">
  	<script src="/public/js/modal.js"></script>
+ 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   <script type="text/javascript">
+     google.charts.load('current', {packages: ['corechart']});     
+   </script>
  	<script>
  		function del(postId){
  			var r=confirm("Do you want to delete this link "+postId+"?");
@@ -34,13 +38,14 @@
 		<div id="myModal" class="modal">
 			<div class="modal-content">
 				<span id="close">&times;</span>
-					<p>You have been doomed</p>
+					<div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
+</body>
 			</div>
 		</div>
 		<ul class="list-group">
 		<% posts.forEach(function(post){%>
 			<div>
-				<li class="list-group-item"><%= post.val %>&nbsp&nbsp<a href="/link/<%=post._id%>"><%=post._id%></a><button class="btn btn-primary" id="test" onclick="func()">View</button><button class="btn btn-danger" onclick="del('<%=post._id%>')">Delete</button><br>
+				<li class="list-group-item"><%= post.val %>&nbsp&nbsp<a href="/link/<%=post._id%>"><%=post._id%></a><button class="btn btn-primary" id="test" onclick="func('<%=post._id%>')">View</button><button class="btn btn-danger" onclick="del('<%=post._id%>')">Delete</button><br>
 			</div>
 		<%}) %>
 		</ul>
