@@ -59,7 +59,6 @@ module.exports = function (app, passport) {
 		});
 	app.route('/deletepost')
 		.post(isLoggedIn,function(req,res,next){
-			console.log(req.body);
 			var query={
 				'_id':req.body.postId
 			}
@@ -69,15 +68,18 @@ module.exports = function (app, passport) {
 					console.log(err);
 					return;
 				}
-				post.remove(function(err)
+				if(post.user===req.user._id)
 				{
-					if(err)
+					post.remove(function(err)
 					{
-						console.log(err);
-						return;
-					}
-					res.json({success : "Updated Successfully", status : 200});
-				});
+						if(err)
+						{
+							console.log(err);
+							return;
+						}
+						res.json({success : "Updated Successfully", status : 200});
+					});
+				}
 			});
 		});
 	app.route('/profile')
@@ -91,7 +93,7 @@ module.exports = function (app, passport) {
 		})
 		.post(isLoggedIn,function(req,res,next)
 		{
-			//console.log(req.body);
+			console.log(req.user._id);
 			var post=new Post({
 				val:req.body.question,
 				users:req.user._id,
